@@ -189,7 +189,7 @@ header {
 
 .info .container {
   gap: 5em;
-  padding: 8em 0;
+  padding: 8em 0 3em 0;
 }
 
 .info-left {
@@ -240,7 +240,7 @@ header {
   width: 100%;
   padding: 10px 0;
 
-  background-color: #969bab4c;
+  /* background-color: #969bab4c; */
   font-family: var(--font-body);
 }
 
@@ -261,7 +261,9 @@ header {
   }
 
   label {
+    background-color: #969bab4c;
     font-weight: 700;
+    padding: 10px;
   }
 }
 
@@ -269,4 +271,94 @@ header {
 #savePaletteBtn {
   padding: 1em 2em;
   margin: 0 0.2em;
+}
+
+footer {
+  font-style: var(--font-body);
+  font-weight: 600;
+  text-align: center;
+  font-size: 16px;
+}
+
+body {
+  padding-bottom: 12em;
+}
+
+@media (width <= 1000px) {
+  :root {
+    font-size: 6.3px;
+  }
+
+  /* ----- HEADER ----- */
+  header .container a {
+    display: none;
+  }
+
+  #nav-button {
+    display: block;
+  }
+
+  header .container {
+    padding: 2em;
+  }
+
+  /* ----- HERO ----- */
+  .hero {
+    height: max-content;
+  }
+
+  .hero .container {
+    flex-direction: column;
+    gap: 7em;
+    padding: 10em 0;
+  }
+
+  .hero-right {
+    gap: 3em;
+  }
+
+  .hero {
+    /* padding: 5em 0; */
+  }
+
+  /* ----- FEATURES ----- */
+  .features {
+    /* border: 2px solid red; */
+  }
+
+  .features .container {
+    flex-direction: column;
+    padding: 10em 0;
+    gap: 5em;
+  }
+
+  .card {
+    padding: 6em;
+  }
+
+  .card p {
+    margin: 0 3em;
+  }
+
+  /* ----- INFO ----- */
+  .info .container {
+    flex-direction: column;
+    gap: 4em;
+
+    /* border: 2px solid; */
+  }
+
+  .info-right {
+    gap: 3em;
+    padding-bottom: 6em;
+  }
+
+  .info .card {
+    /* border: 2px solid red; */
+    padding: 7em 0;
+  }
+
+  body {
+    padding-bottom: 26em;
+  }
 }
