@@ -44,7 +44,7 @@ header {
   font-weight: 900;
   font-size: 20px;
 
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 .nav-links {
@@ -60,7 +60,7 @@ header {
   font-weight: 700;
   transition: all 0.15s ease-in;
 
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .button-bg {
@@ -73,7 +73,7 @@ header {
   font-size: 15px;
   font-weight: 700;
 
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .nav-links a:hover {
@@ -113,10 +113,10 @@ header {
   font-size: 90px;
   font-weight: 900;
   line-height: 96px;
-  letter-spacing: -2px;
+  letter-spacing: -0.02em;
   color: var(--color-bg);
 
-  font-size: 5.6em;
+  font-size: 5.6rem;
 }
 
 .text-pop {
@@ -141,7 +141,7 @@ header {
   font-weight: 100;
   line-height: 1.4;
 
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .hero-right .button-bg {
@@ -181,7 +181,7 @@ header {
   margin: 1.3rem 0;
   font-weight: 900;
 
-  font-size: 1.9em;
+  font-size: 1.9rem;
 }
 
 .card p {
@@ -192,7 +192,7 @@ header {
   font-weight: 0;
   color: #6f737f;
 
-  font-size: 1.12em;
+  font-size: 1.12rem;
 }
 
 /* ---- INFO ---- */
@@ -220,16 +220,16 @@ header {
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 36px;
-  letter-spacing: -2px;
+  letter-spacing: -0.03em;
 
-  font-size: 2.3em;
+  font-size: 2.3rem;
 }
 
 .info-left p {
   font-size: 21px;
   line-height: 1.4;
 
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 .info-right {
@@ -422,7 +422,7 @@ body {
   }
 
   .nav-links a {
-    font-size: 1.3em;
+    font-size: 1.3rem;
   }
 
   .hero-right {
@@ -434,7 +434,7 @@ body {
   }
 
   .hero-right p {
-    font-size: 0.7em;
+    font-size: 2rem;
   }
 
   .hero-right .button-bg {
@@ -446,17 +446,21 @@ body {
   }
 
   .card h1 {
-    font-size: 2.3em;
+    font-size: 2.3rem;
   }
 
   .card p {
-    font-size: 1.4em;
+    font-size: 1.6rem;
     padding: 0;
     margin: 1em;
   }
 
   .info .card {
     padding: 6em;
+  }
+
+  .info-left p {
+    font-size: 1.6rem;
   }
 
   .color-picker .container {
