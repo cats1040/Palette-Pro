@@ -425,6 +425,10 @@ body {
     font-size: 1.3rem;
   }
 
+  .hero {
+    padding: em 0;
+  }
+
   .hero-right {
     gap: 1em;
   }
@@ -485,5 +489,10 @@ body {
 @media (width <= 500px) {
   :root {
     font-size: 8px;
+  }
+
+  .color-picker .container {
+    flex-direction: column-reverse;
+    align-items: flex-start;
   }
 }
