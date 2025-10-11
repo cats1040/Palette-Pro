@@ -44,7 +44,7 @@ header {
   font-weight: 900;
   font-size: 20px;
 
-  /* font-size: 2em; */
+  font-size: 2em;
 }
 
 .nav-links {
@@ -59,6 +59,8 @@ header {
   font-size: 15px;
   font-weight: 700;
   transition: all 0.15s ease-in;
+
+  font-size: 1em;
 }
 
 .button-bg {
@@ -70,6 +72,8 @@ header {
   color: var(--color-bg);
   font-size: 15px;
   font-weight: 700;
+
+  font-size: 1em;
 }
 
 .nav-links a:hover {
@@ -102,6 +106,7 @@ header {
   font-family: var(--font-heading);
   align-items: center;
   margin: auto;
+  gap: 1em;
 }
 
 .hero-left p {
@@ -110,6 +115,8 @@ header {
   line-height: 96px;
   letter-spacing: -2px;
   color: var(--color-bg);
+
+  font-size: 5.6em;
 }
 
 .text-pop {
@@ -133,6 +140,8 @@ header {
   font-size: 24px;
   font-weight: 100;
   line-height: 1.4;
+
+  font-size: 1em;
 }
 
 .hero-right .button-bg {
@@ -147,7 +156,7 @@ header {
 .features .container {
   justify-content: center;
   gap: 10em;
-  padding: 2.5em 0;
+  padding: 7em 0;
 
   .card {
     border: 0.0000000001px solid rgb(197, 197, 197);
@@ -171,6 +180,8 @@ header {
   font-size: 30px;
   margin: 1.3rem 0;
   font-weight: 900;
+
+  font-size: 1.9em;
 }
 
 .card p {
@@ -180,6 +191,8 @@ header {
   line-height: 1.4;
   font-weight: 0;
   color: #6f737f;
+
+  font-size: 1.12em;
 }
 
 /* ---- INFO ---- */
@@ -208,11 +221,15 @@ header {
   font-weight: 900;
   font-size: 36px;
   letter-spacing: -2px;
+
+  font-size: 2.3em;
 }
 
 .info-left p {
   font-size: 21px;
   line-height: 1.4;
+
+  font-size: 1.3em;
 }
 
 .info-right {
@@ -238,7 +255,7 @@ header {
   position: fixed;
   bottom: 20px;
   width: 100%;
-  padding: 10px 0;
+  padding: 0.5em 0;
 
   /* background-color: #969bab4c; */
   font-family: var(--font-body);
@@ -256,14 +273,16 @@ header {
   align-items: center;
 
   input {
-    width: 50px;
-    height: 50px;
+    width: 4em;
+    height: 4em;
   }
 
   label {
     background-color: #969bab4c;
     font-weight: 700;
     padding: 10px;
+
+    padding: 0.6em;
   }
 }
 
@@ -273,20 +292,40 @@ header {
   margin: 0 0.2em;
 }
 
+.color-picker .container .color-pickers {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.color-picker .color-buttons {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 0.3em;
+  align-items: center;
+}
+
 footer {
-  font-style: var(--font-body);
+  font-style: var(--font-heading);
   font-weight: 600;
   text-align: center;
-  font-size: 16px;
+  font-size: 1.2em;
+  padding: 1em;
 }
 
 body {
-  padding-bottom: 12em;
+  /* padding-bottom: 12em; */
+}
+
+@media (width <= 1240px) {
+  label {
+    display: none;
+  }
 }
 
 @media (width <= 1000px) {
   :root {
-    font-size: 6.3px;
+    /* font-size: 10px; */
   }
 
   /* ----- HEADER ----- */
@@ -299,7 +338,7 @@ body {
   }
 
   header .container {
-    padding: 2em;
+    /* padding: 2em; */
   }
 
   /* ----- HERO ----- */
@@ -315,10 +354,6 @@ body {
 
   .hero-right {
     gap: 3em;
-  }
-
-  .hero {
-    /* padding: 5em 0; */
   }
 
   /* ----- FEATURES ----- */
@@ -359,6 +394,92 @@ body {
   }
 
   body {
-    padding-bottom: 26em;
+    /* padding-bottom: 26em; */
+  }
+}
+
+@media (width <= 760px) {
+  :root {
+    /* font-size: 4px; */
+  }
+
+  .hero {
+    height: 98vh;
+  }
+
+  .button-bg {
+    font-size: 13px;
+  }
+}
+
+@media (width <= 690px) {
+  :root {
+    font-size: 10px;
+  }
+
+  .container {
+    gap: 3em;
+  }
+
+  .nav-links a {
+    font-size: 1.3em;
+  }
+
+  .hero-right {
+    gap: 1em;
+  }
+
+  .hero-left p {
+    line-height: 1.2;
+  }
+
+  .hero-right p {
+    font-size: 0.7em;
+  }
+
+  .hero-right .button-bg {
+    font-size: 0.6em;
+  }
+
+  .card {
+    padding: 5em;
+  }
+
+  .card h1 {
+    font-size: 2.3em;
+  }
+
+  .card p {
+    font-size: 1.4em;
+    padding: 0;
+    margin: 1em;
+  }
+
+  .info .card {
+    padding: 6em;
+  }
+
+  .color-picker .container {
+    flex-wrap: wrap;
+  }
+
+  .color-picker .container .color-pickers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .color-picker .color-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+  }
+}
+
+@media (width <= 500px) {
+  :root {
+    font-size: 8px;
   }
 }
