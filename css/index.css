@@ -38,13 +38,17 @@ header {
   background-color: var(--color-bg-secondary);
   color: var(--color-bg);
   font-family: var(--font-heading);
+
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .nav-logo {
   font-weight: 900;
   font-size: 20px;
 
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .nav-links {
@@ -93,7 +97,7 @@ header {
   /* border: 2px solid red; */
 
   background-color: var(--color-bg-primary);
-  height: calc(100vh - 3.5em);
+  height: 100vh;
 
   display: flex;
   justify-content: center; /* centers horizontally */
@@ -106,7 +110,7 @@ header {
   font-family: var(--font-heading);
   align-items: center;
   margin: auto;
-  gap: 1em;
+  gap: 5em;
 }
 
 .hero-left p {
@@ -141,7 +145,8 @@ header {
   font-weight: 100;
   line-height: 1.4;
 
-  font-size: 1rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
 }
 
 .hero-right .button-bg {
@@ -290,33 +295,40 @@ header {
 #savePaletteBtn {
   padding: 1em 2em;
   margin: 0 0.2em;
+
+  /* border: 2px solid red; */
+}
+
+.color-picker .container {
+  /* border: 2px solid rgb(97, 73, 73); */
+  padding: 0;
 }
 
 .color-picker .container .color-pickers {
   display: flex;
-  flex-direction: row;
   gap: 1em;
+  /* justify-content: space-evenly; */
 }
 
 .color-picker .color-buttons {
   display: flex;
   /* flex-direction: column; */
-  gap: 0.3em;
-  align-items: center;
+  gap: 1em;
+
+  /* border: 2px solid red; */
+  align-self: last baseline;
 }
 
+/* ----- FOOTER ----- */
 footer {
   font-style: var(--font-heading);
   font-weight: 600;
   text-align: center;
   font-size: 1.2em;
-  padding: 1em;
+  padding: 0.5em;
 }
 
-body {
-  /* padding-bottom: 12em; */
-}
-
+/* ----- MEDIA QUERIES ----- */
 @media (width <= 1240px) {
   label {
     display: none;
@@ -329,7 +341,7 @@ body {
   }
 
   /* ----- HEADER ----- */
-  header .container a {
+  .main .container .nav-links a {
     display: none;
   }
 
@@ -400,7 +412,7 @@ body {
 
 @media (width <= 760px) {
   :root {
-    /* font-size: 4px; */
+    /* font-size: 0.6em; */
   }
 
   .hero {
@@ -412,7 +424,7 @@ body {
   }
 }
 
-@media (width <= 690px) {
+@media (width <= 760px) {
   :root {
     font-size: 10px;
   }
@@ -469,6 +481,7 @@ body {
 
   .color-picker .container {
     flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .color-picker .container .color-pickers {
@@ -476,13 +489,19 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1em;
+    width: 100%;
+    justify-content: space-evenly;
   }
 
   .color-picker .color-buttons {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1em;
+    justify-content: space-between;
     align-items: flex-start;
+
+    border: 2px solid red;
+    width: 100%;
   }
 }
 
@@ -495,4 +514,19 @@ body {
     flex-direction: column-reverse;
     align-items: flex-start;
   }
+
+  .color-buttons {
+    flex-direction: column;
+  }
+
+  .color-picker .container .color-pickers {
+    /* align-items: flex-start; */
+    justify-content: flex-start;
+    border: 2px solid red;
+  }
+}
+
+.hero {
+  min-height: 100vh;
+  max-height: max-content;
 }
