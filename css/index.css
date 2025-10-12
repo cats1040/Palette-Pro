@@ -516,7 +516,7 @@ footer {
   }
 
   .color-buttons {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 
   .color-picker .container .color-pickers {
