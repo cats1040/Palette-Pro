@@ -500,7 +500,7 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
 
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 100%;
   }
 }
@@ -522,7 +522,7 @@ footer {
   .color-picker .container .color-pickers {
     /* align-items: flex-start; */
     justify-content: flex-start;
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 }
 
