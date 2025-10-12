@@ -21,7 +21,6 @@ function loadSavedPalettes() {
         <input type="color" value="${
           p.secondary
         }" data-key="secondary" title="Secondary"/>
-        <input type="color" value="${p.text}" data-key="text" title="Text"/>
         <input type="color" value="${
           p.textMuted
         }" data-key="textMuted" title="Text Muted"/>
@@ -37,7 +36,7 @@ function loadSavedPalettes() {
         <p>${[
           p.primary,
           p.secondary,
-          p.text,
+          // p.text,
           p.textMuted,
           p.bg,
           p.bgPrimary,
@@ -64,7 +63,7 @@ function loadSavedPalettes() {
         infoParagraph.textContent = [
           p.primary,
           p.secondary,
-          p.text,
+          // p.text,
           p.textMuted,
           p.bg,
           p.bgPrimary,

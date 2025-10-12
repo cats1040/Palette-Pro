@@ -490,7 +490,7 @@ footer {
     flex-wrap: wrap;
     gap: 1em;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .color-picker .color-buttons {
@@ -517,12 +517,6 @@ footer {
 
   .color-buttons {
     /* flex-direction: column; */
-  }
-
-  .color-picker .container .color-pickers {
-    /* align-items: flex-start; */
-    justify-content: flex-start;
-    /* border: 2px solid red; */
   }
 }
 

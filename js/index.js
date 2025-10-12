@@ -13,7 +13,7 @@ class Palette {
     const root = document.documentElement;
     root.style.setProperty("--color-primary", this.primary);
     root.style.setProperty("--color-secondary", this.secondary);
-    root.style.setProperty("--color-text", this.text);
+    // root.style.setProperty("--color-text", this.text);
     root.style.setProperty("--color-text-muted", this.textMuted);
     root.style.setProperty("--color-bg", this.bg);
     root.style.setProperty("--color-bg-primary", this.bgPrimary);
@@ -35,7 +35,7 @@ function PaletteController(palette) {
   this.inputs = {
     primary: document.getElementById("color-primary"),
     secondary: document.getElementById("color-secondary"),
-    text: document.getElementById("color-text"),
+    // text: document.getElementById("color-text"),
     textMuted: document.getElementById("color-text-muted"),
     bg: document.getElementById("color-bg"),
     bgPrimary: document.getElementById("color-bg-primary"),
