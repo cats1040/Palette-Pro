@@ -12,7 +12,7 @@
   --color-bg: #ffffff;
   --color-bg-secondary: #2e323f;
   --color-bg-primary: #3b4050;
-  
+
   --font-heading: sans-serif;
   --font-body: "Montserrat", sans-serif;
 }
@@ -35,10 +35,10 @@ img {
 header {
   background-color: var(--color-bg-secondary);
   width: 100%;
- 
+
   color: var(--color-bg);
   font-family: var(--font-heading);
- 
+
   position: fixed;
   top: 0;
 }
@@ -69,12 +69,12 @@ header {
   border-radius: 200px;
 
   background-color: var(--color-secondary);
-  
+
   color: var(--color-bg);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
-  
+
   transition: all 0.15s ease-in;
 }
 
@@ -94,9 +94,9 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   background-color: var(--color-bg-primary);
-  
+
   height: 100vh;
 }
 
@@ -123,10 +123,10 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  
+
   font-size: 24px;
   color: var(--color-bg);
-  
+
   margin-top: auto;
 }
 
@@ -148,7 +148,7 @@ header {
 
 .features .container {
   justify-content: center;
-  gap: 10em;
+  gap: 7em;
   padding: 7em 0;
 
   .card {
@@ -164,7 +164,7 @@ header {
 
 .card h1 {
   margin: 1.3rem 0;
-  
+
   font-family: var(--font-heading);
   font-size: 1.9rem;
   color: var(--color-secondary);
@@ -193,7 +193,7 @@ header {
 .info-left {
   font-family: var(--font-body);
   color: var(--color-text-muted);
-  
+
   margin-right: 2rem;
 
   display: flex;
@@ -224,6 +224,7 @@ header {
 .info .card {
   background-color: var(--color-bg-primary);
   padding: 2rem 2.5rem;
+  padding: 3rem 2.5rem;
 
   h1,
   p {
@@ -238,13 +239,13 @@ header {
   bottom: 20px;
   width: 100%;
   padding: 0.5em 0;
-  
+
   font-family: var(--font-body);
 }
 
 .color-picker label {
   margin-bottom: 1em;
-  
+
   font-family: var(--font-heading);
   color: var(--color-primary);
 }
@@ -304,7 +305,7 @@ footer {
   }
 }
 
-@media (width <= 1000px) {
+@media (width <= 1024px) {
   /* ----- HEADER ----- */
   .main .container .nav-links a {
     display: none;
@@ -362,11 +363,12 @@ footer {
 
 @media (width <= 760px) {
   .hero {
-    height: 98vh;
+    height: min(100vh, max-content);
   }
 
   .button-bg {
     font-size: 13px;
+    font-size: 1.5rem;
   }
 }
 
@@ -466,4 +468,24 @@ footer {
 .hero {
   min-height: 100vh;
   max-height: max-content;
+}
+
+@media (width <= 380px) {
+  :root {
+    font-size: 7px;
+  }
+}
+
+@media (width <= 950px) {
+  .color-picker .container {
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: center;
+
+    .color-pickers,
+    .color-buttons {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
 }

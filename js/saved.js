@@ -5,7 +5,9 @@ function loadSavedPalettes() {
   container.innerHTML = "";
 
   if (palettes.length === 0) {
-    container.innerHTML = "<p>No saved palettes yet.</p>";
+    container.innerHTML = `<p style='font-size: 1.2rem; font-family: sans-serif; color: #6f737f; text-align: center; font-style: italic; height:80vh; margin:auto; display:flex; justify-content:center; align-items: center;'>
+      No saved palettes yet.
+      </p>`;
     return;
   }
 
@@ -36,7 +38,6 @@ function loadSavedPalettes() {
         <p>${[
           p.primary,
           p.secondary,
-          // p.text,
           p.textMuted,
           p.bg,
           p.bgPrimary,
@@ -63,7 +64,6 @@ function loadSavedPalettes() {
         infoParagraph.textContent = [
           p.primary,
           p.secondary,
-          // p.text,
           p.textMuted,
           p.bg,
           p.bgPrimary,
