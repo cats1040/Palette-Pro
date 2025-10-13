@@ -1,13 +1,13 @@
 // Represents a color palette with 7 customizable color roles
 class Palette {
   constructor(primary, secondary, text, textMuted, bg, bgPrimary, bgSecondary) {
-    this.primary = primary;           // Main accent color
-    this.secondary = secondary;       // Secondary accent color
-    this.text = text;                 // Primary text color
-    this.textMuted = textMuted;       // Muted / subtle text color
-    this.bg = bg;                     // Page background color
-    this.bgPrimary = bgPrimary;       // Primary section background (e.g., header)
-    this.bgSecondary = bgSecondary;   // Secondary section background (e.g., footer)
+    this.primary = primary; // Main accent color
+    this.secondary = secondary; // Secondary accent color
+    this.text = text; // Primary text color
+    this.textMuted = textMuted; // Muted / subtle text color
+    this.bg = bg; // Page background color
+    this.bgPrimary = bgPrimary; // Primary section background (e.g., header)
+    this.bgSecondary = bgSecondary; // Secondary section background (e.g., footer)
   }
 
   // Applies the palette colors to CSS variables in :root
@@ -47,7 +47,7 @@ function PaletteController(palette) {
   };
 
   this.randomBtn = document.getElementById("generate-random"); // Random palette button
-  this.saveBtn = document.getElementById("savePaletteBtn");     // Save palette button
+  this.saveBtn = document.getElementById("savePaletteBtn"); // Save palette button
 }
 
 // Initialize UI and attach event listeners
@@ -127,4 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Activate palette controller
   const controller = new PaletteController(defaultPalette);
   controller.init();
+});
+
+// Toggle color picker
+document.getElementById("toggle-picker").addEventListener("click", () => {
+  const pickerSection = document.querySelector(".color-picker");
+  pickerSection.style.display =
+    pickerSection.style.display === "none" ? "block" : "none";
 });

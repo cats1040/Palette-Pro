@@ -98,6 +98,9 @@ header {
   background-color: var(--color-bg-primary);
 
   height: 100vh;
+
+  /* border: 2px solid red; */
+  margin-top: 1.8em;
 }
 
 .hero .container {
@@ -105,6 +108,8 @@ header {
   align-items: center;
   margin: auto;
   gap: 5em;
+
+  /* border: 2px solid yellow; */
 }
 
 .hero-left p {
@@ -309,6 +314,10 @@ footer {
   /* ----- HEADER ----- */
   .main .container .nav-links a {
     display: none;
+  }
+
+  .main #toggle-picker {
+    display: block;
   }
 
   #nav-button {
