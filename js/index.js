@@ -1,13 +1,15 @@
-// Represents a color palette with 7 customizable color roles
+// ======================
+//  Palette Class
+// ======================
+// Represents a color palette with 6 customizable color roles
 class Palette {
-  constructor(primary, secondary, text, textMuted, bg, bgPrimary, bgSecondary) {
-    this.primary = primary;
-    this.secondary = secondary;
-    this.text = text;
-    this.textMuted = textMuted;
-    this.bg = bg;
-    this.bgPrimary = bgPrimary;
-    this.bgSecondary = bgSecondary;
+  constructor(primary, secondary, textMuted, bg, bgPrimary, bgSecondary) {
+    this.primary = primary; // Main accent color
+    this.secondary = secondary; // Secondary accent color
+    this.textMuted = textMuted; // Muted / subtle text color
+    this.bg = bg; // Page background color
+    this.bgPrimary = bgPrimary; // Primary section background (e.g., header)
+    this.bgSecondary = bgSecondary; // Secondary section background (e.g., footer)
   }
 
   // Applies the palette colors to CSS variables in :root
@@ -22,7 +24,7 @@ class Palette {
   }
 }
 
-// Generates a random hex color (e.g., "#a1b2c3")
+// Generates a random hex color
 function randomColor() {
   return (
     "#" +
@@ -32,10 +34,13 @@ function randomColor() {
   );
 }
 
-// Controller to handle palette UI interactions
+// ======================
+//  Palette Controller
+// ======================
 function PaletteController(palette) {
   this.palette = palette;
 
+  // Input fields mapped by color role
   this.inputs = {
     primary: document.getElementById("color-primary"),
     secondary: document.getElementById("color-secondary"),
@@ -53,20 +58,19 @@ function PaletteController(palette) {
 PaletteController.prototype.init = function () {
   this.palette.apply();
 
-  // For every input change, update palette & save to localStorage
+  // Live update & store in sessionStorage for current tab only
   Object.entries(this.inputs).forEach(([key, input]) => {
     input.value = this.palette[key];
     input.addEventListener("input", (e) => {
       this.palette[key] = e.target.value;
       this.palette.apply();
-      localStorage.setItem("currentPalette", JSON.stringify(this.palette)); // ✅ Persistent save
+      sessionStorage.setItem("currentPalette", JSON.stringify(this.palette)); // Tab-only
     });
   });
 
-  // Generate completely random palette
+  // Generate random palette
   this.randomBtn.addEventListener("click", () => {
     this.palette = new Palette(
-      randomColor(),
       randomColor(),
       randomColor(),
       randomColor(),
@@ -75,69 +79,73 @@ PaletteController.prototype.init = function () {
       randomColor()
     );
     this.palette.apply();
-    localStorage.setItem("currentPalette", JSON.stringify(this.palette)); // ✅ Save random palette
+    sessionStorage.setItem("currentPalette", JSON.stringify(this.palette));
 
     Object.entries(this.inputs).forEach(([key, input]) => {
       input.value = this.palette[key];
     });
   });
 
-  // Save to saved palettes list
+  // Save permanently using localStorage
   if (this.saveBtn) {
     this.saveBtn.addEventListener("click", () => {
       const savedPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
       savedPalettes.push(this.palette);
       localStorage.setItem("palettes", JSON.stringify(savedPalettes));
-      alert("Palette saved!");
+      alert("Palette saved permanently!");
     });
   }
 };
 
-// Initialize page when DOM is ready
+// ======================
+//  Initialization Logic
+// ======================
 document.addEventListener("DOMContentLoaded", () => {
   const loadData = JSON.parse(localStorage.getItem("loadPalette"));
-  const savedCurrent = JSON.parse(localStorage.getItem("currentPalette"));
-  let defaultPalette;
+  const savedCurrent = JSON.parse(sessionStorage.getItem("currentPalette")); // Session-only
+  let defaultPalette = new Palette(
+    "#3b4050",
+    "#a59678",
+    "#6f737f",
+    "#ffffff",
+    "#3b4050",
+    "#2e323f"
+  );
+
+  let paletteToUse;
 
   if (loadData) {
-    defaultPalette = new Palette(
+    // Apply loaded palette from saved.html
+    paletteToUse = new Palette(
       loadData.primary,
       loadData.secondary,
-      loadData.text,
       loadData.textMuted,
       loadData.bg,
       loadData.bgPrimary,
       loadData.bgSecondary
     );
-    localStorage.setItem("currentPalette", JSON.stringify(defaultPalette)); // ✅ Make loaded palette persistent
-    localStorage.removeItem("loadPalette");
+    sessionStorage.setItem("currentPalette", JSON.stringify(paletteToUse));
+    localStorage.removeItem("loadPalette"); // cleanup
   } else if (savedCurrent) {
-    defaultPalette = new Palette(
+    // Restore last session palette in the same tab
+    paletteToUse = new Palette(
       savedCurrent.primary,
       savedCurrent.secondary,
-      savedCurrent.text,
       savedCurrent.textMuted,
       savedCurrent.bg,
       savedCurrent.bgPrimary,
       savedCurrent.bgSecondary
     );
   } else {
-    defaultPalette = new Palette(
-      "#3b4050",
-      "#a59678",
-      "#3b4050",
-      "#6f737f",
-      "#ffffff",
-      "#3b4050",
-      "#2e323f"
-    );
+    // Fresh tab or no session → default palette
+    paletteToUse = defaultPalette;
   }
 
-  const controller = new PaletteController(defaultPalette);
+  const controller = new PaletteController(paletteToUse);
   controller.init();
 });
 
-// Toggle color picker
+// Toggle color picker visibility
 document.getElementById("toggle-picker").addEventListener("click", () => {
   const pickerSection = document.querySelector(".color-picker");
   pickerSection.style.display =
