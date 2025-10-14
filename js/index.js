@@ -1,13 +1,13 @@
 // Represents a color palette with 7 customizable color roles
 class Palette {
   constructor(primary, secondary, text, textMuted, bg, bgPrimary, bgSecondary) {
-    this.primary = primary; // Main accent color
-    this.secondary = secondary; // Secondary accent color
-    this.text = text; // Primary text color
-    this.textMuted = textMuted; // Muted / subtle text color
-    this.bg = bg; // Page background color
-    this.bgPrimary = bgPrimary; // Primary section background (e.g., header)
-    this.bgSecondary = bgSecondary; // Secondary section background (e.g., footer)
+    this.primary = primary;
+    this.secondary = secondary;
+    this.text = text;
+    this.textMuted = textMuted;
+    this.bg = bg;
+    this.bgPrimary = bgPrimary;
+    this.bgSecondary = bgSecondary;
   }
 
   // Applies the palette colors to CSS variables in :root
@@ -26,9 +26,9 @@ class Palette {
 function randomColor() {
   return (
     "#" +
-    Math.floor(Math.random() * 16777215) // 16777215 = FFFFFF in decimal
+    Math.floor(Math.random() * 16777215)
       .toString(16)
-      .padStart(6, "0") // Ensures 6-character format
+      .padStart(6, "0")
   );
 }
 
@@ -36,7 +36,6 @@ function randomColor() {
 function PaletteController(palette) {
   this.palette = palette;
 
-  // Input fields mapped by color role
   this.inputs = {
     primary: document.getElementById("color-primary"),
     secondary: document.getElementById("color-secondary"),
@@ -46,25 +45,25 @@ function PaletteController(palette) {
     bgSecondary: document.getElementById("color-bg-secondary"),
   };
 
-  this.randomBtn = document.getElementById("generate-random"); // Random palette button
-  this.saveBtn = document.getElementById("savePaletteBtn"); // Save palette button
+  this.randomBtn = document.getElementById("generate-random");
+  this.saveBtn = document.getElementById("savePaletteBtn");
 }
 
 // Initialize UI and attach event listeners
 PaletteController.prototype.init = function () {
-  // Apply the current palette to the page and update input fields
   this.palette.apply();
+
+  // For every input change, update palette & save to localStorage
   Object.entries(this.inputs).forEach(([key, input]) => {
     input.value = this.palette[key];
-
-    // Live update color when user changes input
     input.addEventListener("input", (e) => {
       this.palette[key] = e.target.value;
       this.palette.apply();
+      localStorage.setItem("currentPalette", JSON.stringify(this.palette)); // ✅ Persistent save
     });
   });
 
-  // Generate and apply a completely random palette
+  // Generate completely random palette
   this.randomBtn.addEventListener("click", () => {
     this.palette = new Palette(
       randomColor(),
@@ -76,14 +75,14 @@ PaletteController.prototype.init = function () {
       randomColor()
     );
     this.palette.apply();
+    localStorage.setItem("currentPalette", JSON.stringify(this.palette)); // ✅ Save random palette
 
-    // Update inputs to reflect new random palette
     Object.entries(this.inputs).forEach(([key, input]) => {
       input.value = this.palette[key];
     });
   });
 
-  // Save current palette to localStorage
+  // Save to saved palettes list
   if (this.saveBtn) {
     this.saveBtn.addEventListener("click", () => {
       const savedPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
@@ -96,8 +95,8 @@ PaletteController.prototype.init = function () {
 
 // Initialize page when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  // If user clicked "Load" on saved.html, retrieve that palette
   const loadData = JSON.parse(localStorage.getItem("loadPalette"));
+  const savedCurrent = JSON.parse(localStorage.getItem("currentPalette"));
   let defaultPalette;
 
   if (loadData) {
@@ -110,9 +109,19 @@ document.addEventListener("DOMContentLoaded", () => {
       loadData.bgPrimary,
       loadData.bgSecondary
     );
-    localStorage.removeItem("loadPalette"); // prevent auto-loading next time
+    localStorage.setItem("currentPalette", JSON.stringify(defaultPalette)); // ✅ Make loaded palette persistent
+    localStorage.removeItem("loadPalette");
+  } else if (savedCurrent) {
+    defaultPalette = new Palette(
+      savedCurrent.primary,
+      savedCurrent.secondary,
+      savedCurrent.text,
+      savedCurrent.textMuted,
+      savedCurrent.bg,
+      savedCurrent.bgPrimary,
+      savedCurrent.bgSecondary
+    );
   } else {
-    // Default palette if nothing is loaded
     defaultPalette = new Palette(
       "#3b4050",
       "#a59678",
@@ -124,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Activate palette controller
   const controller = new PaletteController(defaultPalette);
   controller.init();
 });

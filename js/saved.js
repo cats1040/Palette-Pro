@@ -15,7 +15,7 @@ function loadSavedPalettes() {
     const card = document.createElement("div");
     card.classList.add("palette-card");
 
-    const colorsHTML = `
+    card.innerHTML = `
       <div class="color-inputs">
         <input type="color" value="${
           p.primary
@@ -49,18 +49,14 @@ function loadSavedPalettes() {
         </div>
       </div>
     `;
-
-    card.innerHTML = colorsHTML;
     container.appendChild(card);
 
     const inputs = card.querySelectorAll("input[type=color]");
     const infoParagraph = card.querySelector(".palette-info p");
 
-    // Update palette preview text when changing colors
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
-        const key = input.dataset.key;
-        p[key] = input.value;
+        p[input.dataset.key] = input.value;
         infoParagraph.textContent = [
           p.primary,
           p.secondary,
@@ -72,15 +68,13 @@ function loadSavedPalettes() {
       });
     });
 
-    // Save button
     card.querySelector(".save-btn").addEventListener("click", () => {
       const allPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
-      allPalettes[i] = p; // update palette at this index
+      allPalettes[i] = p;
       localStorage.setItem("palettes", JSON.stringify(allPalettes));
       alert("Palette updated!");
     });
 
-    // Delete button
     card.querySelector(".delete-btn").addEventListener("click", () => {
       const allPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
       allPalettes.splice(i, 1);
@@ -88,17 +82,14 @@ function loadSavedPalettes() {
       loadSavedPalettes();
     });
 
-    // inside loadSavedPalettes() for each card
     const loadBtn = document.createElement("button");
     loadBtn.textContent = "Load";
     loadBtn.classList.add("load-btn");
-
-    // Add Load button to palette-buttons div
     card.querySelector(".palette-buttons").prepend(loadBtn);
 
-    // Load button functionality
     loadBtn.addEventListener("click", () => {
       localStorage.setItem("loadPalette", JSON.stringify(p));
+      localStorage.setItem("currentPalette", JSON.stringify(p)); // ✅ Make it persistent
       window.location.href = "index.html";
     });
   });
