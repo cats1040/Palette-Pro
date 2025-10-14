@@ -1,38 +1,35 @@
 const container = document.querySelector(".saved-palettes");
 
+// Define the default palette (6 colors)
+const DEFAULT_PALETTE = {
+  primary: "#3b4050",
+  secondary: "#a59678",
+  textMuted: "#6f737f",
+  bg: "#ffffff",
+  bgPrimary: "#3b4050",
+  bgSecondary: "#2e323f",
+};
+
 function loadSavedPalettes() {
   const palettes = JSON.parse(localStorage.getItem("palettes")) || [];
+
   container.innerHTML = "";
 
-  if (palettes.length === 0) {
-    container.innerHTML = `<p style='font-size: 1.2rem; font-family: sans-serif; color: #6f737f; text-align: center; font-style: italic; height:80vh; margin:auto; display:flex; justify-content:center; align-items: center;'>
-      No saved palettes yet.
-      </p>`;
-    return;
-  }
+  // Insert default palette first (for display only)
+  const allPalettes = [DEFAULT_PALETTE, ...palettes];
 
-  palettes.forEach((p, i) => {
+  allPalettes.forEach((p, i) => {
     const card = document.createElement("div");
     card.classList.add("palette-card");
 
     card.innerHTML = `
       <div class="color-inputs">
-        <input type="color" value="${
-          p.primary
-        }" data-key="primary" title="Primary"/>
-        <input type="color" value="${
-          p.secondary
-        }" data-key="secondary" title="Secondary"/>
-        <input type="color" value="${
-          p.textMuted
-        }" data-key="textMuted" title="Text Muted"/>
-        <input type="color" value="${p.bg}" data-key="bg" title="Background"/>
-        <input type="color" value="${
-          p.bgPrimary
-        }" data-key="bgPrimary" title="Background Primary"/>
-        <input type="color" value="${
-          p.bgSecondary
-        }" data-key="bgSecondary" title="Background Secondary"/>
+        <input type="color" value="${p.primary}" data-key="primary"/>
+        <input type="color" value="${p.secondary}" data-key="secondary"/>
+        <input type="color" value="${p.textMuted}" data-key="textMuted"/>
+        <input type="color" value="${p.bg}" data-key="bg"/>
+        <input type="color" value="${p.bgPrimary}" data-key="bgPrimary"/>
+        <input type="color" value="${p.bgSecondary}" data-key="bgSecondary"/>
       </div>
       <div class="palette-info">
         <p>${[
@@ -46,6 +43,7 @@ function loadSavedPalettes() {
         <div class="palette-buttons">
           <button class="save-btn">Save</button>
           <button class="delete-btn">Delete</button>
+          <button class="load-btn">Load</button>
         </div>
       </div>
     `;
@@ -54,6 +52,7 @@ function loadSavedPalettes() {
     const inputs = card.querySelectorAll("input[type=color]");
     const infoParagraph = card.querySelector(".palette-info p");
 
+    // Live update preview
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         p[input.dataset.key] = input.value;
@@ -68,28 +67,37 @@ function loadSavedPalettes() {
       });
     });
 
+    // Save button (only saves to localStorage if not default palette)
     card.querySelector(".save-btn").addEventListener("click", () => {
-      const allPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
-      allPalettes[i] = p;
-      localStorage.setItem("palettes", JSON.stringify(allPalettes));
-      alert("Palette updated!");
+      if (i === 0) {
+        // Save default palette as new entry in localStorage
+        const savedPalettes =
+          JSON.parse(localStorage.getItem("palettes")) || [];
+        savedPalettes.push(p);
+        localStorage.setItem("palettes", JSON.stringify(savedPalettes));
+        alert("Default palette saved!");
+      } else {
+        const savedPalettes =
+          JSON.parse(localStorage.getItem("palettes")) || [];
+        savedPalettes[i - 1] = p; // update correct index
+        localStorage.setItem("palettes", JSON.stringify(savedPalettes));
+        alert("Palette updated!");
+      }
     });
 
+    // Delete button
     card.querySelector(".delete-btn").addEventListener("click", () => {
-      const allPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
-      allPalettes.splice(i, 1);
-      localStorage.setItem("palettes", JSON.stringify(allPalettes));
+      if (i === 0) return; // cannot delete default palette
+      const savedPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
+      savedPalettes.splice(i - 1, 1);
+      localStorage.setItem("palettes", JSON.stringify(savedPalettes));
       loadSavedPalettes();
     });
 
-    const loadBtn = document.createElement("button");
-    loadBtn.textContent = "Load";
-    loadBtn.classList.add("load-btn");
-    card.querySelector(".palette-buttons").prepend(loadBtn);
-
-    loadBtn.addEventListener("click", () => {
-      localStorage.setItem("loadPalette", JSON.stringify(p));
-      localStorage.setItem("currentPalette", JSON.stringify(p)); // ✅ Make it persistent
+    // Load button
+    card.querySelector(".load-btn").addEventListener("click", () => {
+      sessionStorage.setItem("currentPalette", JSON.stringify(p)); // session only
+      localStorage.setItem("loadPalette", JSON.stringify(p)); // for index.html detection
       window.location.href = "index.html";
     });
   });
