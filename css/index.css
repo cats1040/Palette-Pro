@@ -48,6 +48,12 @@ header {
   font-size: 1.4rem;
 }
 
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 .nav-links {
   display: flex;
   gap: 2.5em;
@@ -312,8 +318,27 @@ footer {
 
 @media (width <= 1024px) {
   /* ----- HEADER ----- */
-  .main .container .nav-links a {
+  .main .nav-links {
     display: none;
+    flex-direction: column;
+
+    background-color: var(--color-bg-secondary);
+
+    position: absolute;
+    top: 5.3em;
+    right: 0.8em;
+    padding: 2em;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .main .nav-links.show {
+    display: flex;
+  }
+
+  .main .nav-toggle {
+    display: block;
+    font-weight: 900;
   }
 
   .main #toggle-picker {

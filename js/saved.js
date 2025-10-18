@@ -104,3 +104,19 @@ function loadSavedPalettes() {
 }
 
 document.addEventListener("DOMContentLoaded", loadSavedPalettes);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.querySelector(".nav-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+
+  // Optional: Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!toggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove("show");
+    }
+  });
+});
