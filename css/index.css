@@ -422,7 +422,7 @@ footer {
 
   /* ----- HERO ----- */
   .hero {
-    padding: em 0;
+    padding: 0;
   }
 
   .hero-right {
@@ -490,7 +490,7 @@ footer {
 
 @media (width <= 500px) {
   :root {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .color-picker .container {
@@ -506,7 +506,7 @@ footer {
 
 @media (width <= 380px) {
   :root {
-    font-size: 7px;
+    font-size: 9px;
   }
 }
 
