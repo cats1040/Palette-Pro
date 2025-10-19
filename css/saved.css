@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   padding: 2rem 0;
-  padding-top: 4rem;
+  padding-top: 4.3rem;
 }
 
 .palette-card {
@@ -33,7 +33,7 @@
 }
 
 .palette-info p {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #555;
   margin-bottom: 10px;
   word-break: break-word;
@@ -50,8 +50,9 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 1rem;
   transition: background 0.3s;
+  text-transform: uppercase;
 }
 
 .save-btn {
