@@ -493,6 +493,10 @@ footer {
     font-size: 10px;
   }
 
+  .button-bg {
+    font-size: 1.3rem;
+  }
+
   .color-picker .container {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -506,7 +510,7 @@ footer {
 
 @media (width <= 380px) {
   :root {
-    font-size: 9px;
+    font-size: 8px;
   }
 }
 
