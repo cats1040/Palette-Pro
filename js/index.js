@@ -14,8 +14,8 @@ class Palette {
 
   // Applies the palette colors to CSS variables in :root
   apply() {
-    const root = document.documentElement;
-    root.style.setProperty("--color-primary", this.primary);
+    const root = document.documentElement; // <html> element
+    root.style.setProperty("--color-primary", this.primary); // Set CSS variable
     root.style.setProperty("--color-secondary", this.secondary);
     root.style.setProperty("--color-text-muted", this.textMuted);
     root.style.setProperty("--color-bg", this.bg);
@@ -24,23 +24,27 @@ class Palette {
   }
 }
 
-// Generates a random hex color
+// ======================
+//  Generate Random Color
+// ======================
+// Returns a random hex color string like "#a1b2c3"
 function randomColor() {
   return (
     "#" +
-    Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0")
+    Math.floor(Math.random() * 16777215) // Random integer for 24-bit color
+      .toString(16) // Convert to hexadecimal
+      .padStart(6, "0") // Ensure 6 digits
   );
 }
 
 // ======================
 //  Palette Controller
 // ======================
+// Handles UI interactions for palette editing and storage
 function PaletteController(palette) {
-  this.palette = palette;
+  this.palette = palette; // Current Palette instance
 
-  // Input fields mapped by color role
+  // Input fields mapped to each color role
   this.inputs = {
     primary: document.getElementById("color-primary"),
     secondary: document.getElementById("color-secondary"),
@@ -50,25 +54,32 @@ function PaletteController(palette) {
     bgSecondary: document.getElementById("color-bg-secondary"),
   };
 
-  this.randomBtn = document.getElementById("generate-random");
-  this.saveBtn = document.getElementById("savePaletteBtn");
+  this.randomBtn = document.getElementById("generate-random"); // Randomize button
+  this.saveBtn = document.getElementById("savePaletteBtn"); // Save button
 }
 
-// Initialize UI and attach event listeners
+// ======================
+//  Initialize UI & Event Listeners
+// ======================
 PaletteController.prototype.init = function () {
-  this.palette.apply();
+  this.palette.apply(); // Apply initial colors
 
-  // Live update & store in sessionStorage for current tab only
+  // ----------------------
+  // Live update inputs
+  // ----------------------
   Object.entries(this.inputs).forEach(([key, input]) => {
-    input.value = this.palette[key];
+    input.value = this.palette[key]; // Set initial input value
     input.addEventListener("input", (e) => {
-      this.palette[key] = e.target.value;
-      this.palette.apply();
-      sessionStorage.setItem("currentPalette", JSON.stringify(this.palette)); // Tab-only
+      this.palette[key] = e.target.value; // Update palette property
+      this.palette.apply(); // Update CSS variables
+      // Save current palette in sessionStorage (tab-only)
+      sessionStorage.setItem("currentPalette", JSON.stringify(this.palette));
     });
   });
 
-  // Generate random palette
+  // ----------------------
+  // Random palette generation
+  // ----------------------
   this.randomBtn.addEventListener("click", () => {
     this.palette = new Palette(
       randomColor(),
@@ -81,12 +92,15 @@ PaletteController.prototype.init = function () {
     this.palette.apply();
     sessionStorage.setItem("currentPalette", JSON.stringify(this.palette));
 
+    // Update input fields to reflect new random palette
     Object.entries(this.inputs).forEach(([key, input]) => {
       input.value = this.palette[key];
     });
   });
 
-  // Save permanently using localStorage
+  // ----------------------
+  // Save palette permanently in localStorage
+  // ----------------------
   if (this.saveBtn) {
     this.saveBtn.addEventListener("click", () => {
       const savedPalettes = JSON.parse(localStorage.getItem("palettes")) || [];
@@ -101,8 +115,11 @@ PaletteController.prototype.init = function () {
 //  Initialization Logic
 // ======================
 document.addEventListener("DOMContentLoaded", () => {
+  // Load palette from saved.html redirect or from current session
   const loadData = JSON.parse(localStorage.getItem("loadPalette"));
   const savedCurrent = JSON.parse(sessionStorage.getItem("currentPalette")); // Session-only
+
+  // Default palette
   let defaultPalette = new Palette(
     "#3b4050",
     "#a59678",
@@ -115,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let paletteToUse;
 
   if (loadData) {
-    // Apply loaded palette from saved.html
+    // Apply palette loaded from saved.html
     paletteToUse = new Palette(
       loadData.primary,
       loadData.secondary,
@@ -125,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadData.bgSecondary
     );
     sessionStorage.setItem("currentPalette", JSON.stringify(paletteToUse));
-    localStorage.removeItem("loadPalette"); // cleanup
+    localStorage.removeItem("loadPalette"); // Clean up temporary storage
   } else if (savedCurrent) {
     // Restore last session palette in the same tab
     paletteToUse = new Palette(
@@ -137,30 +154,38 @@ document.addEventListener("DOMContentLoaded", () => {
       savedCurrent.bgSecondary
     );
   } else {
-    // Fresh tab or no session → default palette
+    // No previous palette → use default
     paletteToUse = defaultPalette;
   }
 
+  // Initialize controller with selected palette
   const controller = new PaletteController(paletteToUse);
   controller.init();
 });
 
-// Toggle color picker visibility
+// ======================
+//  Toggle Color Picker Section
+// ======================
 document.getElementById("toggle-picker").addEventListener("click", () => {
   const pickerSection = document.querySelector(".color-picker");
+  // Show or hide the color picker section
   pickerSection.style.display =
     pickerSection.style.display === "none" ? "block" : "none";
 });
 
+// ======================
+//  Navigation Menu Toggle (Mobile)
+// ======================
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".nav-toggle");
-  const navLinks = document.querySelector(".nav-links");
+  const toggle = document.querySelector(".nav-toggle"); // Hamburger button
+  const navLinks = document.querySelector(".nav-links"); // Navigation menu
 
+  // Toggle menu visibility on click
   toggle.addEventListener("click", () => {
     navLinks.classList.toggle("show");
   });
 
-  // Optional: Close menu when clicking outside
+  // Close menu if clicking outside
   document.addEventListener("click", (e) => {
     if (!toggle.contains(e.target) && !navLinks.contains(e.target)) {
       navLinks.classList.remove("show");
