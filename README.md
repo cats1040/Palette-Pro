@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="1049" height="292" alt="Palette pro logo" src="https://github.com/user-attachments/assets/2e27ab9c-dfed-4032-8b14-49cdbf133703" />
+</p>
+
 # Palette-Pro
 
 Palette-Pro is a web-based tool to **create, preview, save, and manage colour palettes** in real-time.  
