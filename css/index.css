@@ -46,12 +46,16 @@ header {
 .nav-logo {
   font-weight: 900;
   font-size: 1.4rem;
+
+  font-size: 1.4em;
 }
 
 .nav-toggle {
   display: none;
   font-size: 2rem;
   cursor: pointer;
+
+  font-size: 2em;
 }
 
 .nav-links {
@@ -67,6 +71,8 @@ header {
   font-size: 1rem;
 
   transition: all 0.15s ease-in;
+
+  font-size: 1em;
 }
 
 .button-bg {
@@ -321,14 +327,18 @@ footer {
   .main .nav-links {
     display: none;
     flex-direction: column;
+    /* gap: 1.5em; */
 
     background-color: var(--color-bg-secondary);
 
+    border-top: 1px solid rgba(134, 134, 134, 0.226);
+
     position: absolute;
-    top: 5.3em;
-    right: 0.8em;
+    top: 4.4em;
+    right: 0;
+
+    width: 100%;
     padding: 2em;
-    border-radius: 5px;
     z-index: 1000;
   }
 
@@ -416,8 +426,12 @@ footer {
   }
 
   /* ----- HEADER ----- */
+  header .container {
+    font-size: 13px;
+  }
+
   .nav-links a {
-    font-size: 1.3rem;
+    font-size: 1.2em;
   }
 
   /* ----- HERO ----- */
