@@ -55,7 +55,7 @@ cd Palette-Pro
 
 ### Mobile View
 <p align="center">
-  <img width="300" alt="Main palette creation interface" src="https://github.com/user-attachments/assets/212b251b-f0a3-49d3-8b6f-b4b7ca007944" /><br>
+  <img width="300" alt="Main palette creation interface" src="https://github.com/user-attachments/assets/4dea46f9-1933-4680-80e1-95d9780b9681" /><br>
   <em>Main palette creation interface</em>
 </p>
 <p align="center">
