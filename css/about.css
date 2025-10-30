@@ -1,0 +1,79 @@
+:root {
+  --color-primary: #3b4050;
+  --color-secondary: #a59678;
+  --color-text: #3b4050;
+  --color-text-muted: #6f737f;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #2e323f;
+  --color-bg-primary: #3b4050;
+
+  --font-heading: sans-serif;
+  --font-body: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+.about-hero {
+  margin-top: 7rem;
+  min-height: 85vh;
+  padding: 2rem 0;
+
+  display: flex;
+  color: var(--color-bg);
+}
+
+.about-hero .container {
+  /* flex-direction: column; */
+  gap: 6em;
+
+  text-align: center;
+
+  align-items: flex-start;
+
+  /* border: 2px solid red; */
+  color: var(--color-secondary);
+}
+
+.about-hero span {
+  color: var(--color-secondary);
+}
+
+.about-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 0.3em;
+}
+
+.about-hero p {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  /* letter-spacing: -0.02em; */
+  padding: 1em;
+
+  color: var(--color-text-muted);
+}
+
+.about-hero-card {
+  /* border: 2px solid red; */
+  width: 40%;
+  padding: 1em;
+  border: 1px solid var(--color-secondary);
+}
+
+footer {
+  background-color: var(--color-bg);
+}
+
+@media (width <= 1400px) {
+  .about-hero .container {
+    flex-direction: column;
+  }
+
+  .about-hero-card {
+    width: 100%;
+    padding: 5em 1em;
+  }
+}
