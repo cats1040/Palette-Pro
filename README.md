@@ -30,6 +30,7 @@ Palette-Pro/
 ├── js/           # JavaScript logic
 ├── images/       # Images / icons (if any)
 │
+├── about.html    # About palette-pro page
 ├── index.html    # Main palette builder page
 ├── saved.html    # Saved palettes manager
 └── README.md
